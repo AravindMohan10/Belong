@@ -1,0 +1,26 @@
+---
+description: Database, testing, and reliability rules for Belong
+alwaysApply: true
+---
+
+Database rules:
+- Use PostgreSQL-compatible schema with Drizzle ORM.
+- The code must remain portable between Neon Postgres and Aurora PostgreSQL.
+- Use DATABASE_URL only. Do not use provider-specific database features.
+- Every main table should have id and createdAt.
+- Use foreign keys where appropriate.
+- Add indexes for common lookups: clubId, sessionId, userId, slug, startsAt.
+- Keep DB queries in db/queries/* or server actions.nsactions for multi-step writes like RSVP + waitlist updates.
+- Never trust client-provided authorization fields.
+- Do not put database queries inside client components.
+
+Testing and reliability:
+- Every feature must pass: npm run typecheck, npm run lint, npm run build.
+- Add small pure-function tests for logic like Warm Start generation, recap generation, capacity/waitlist logic, and retention calculations.
+- Do not continue to the next slice if the current slice does not build.
+- No feature is complete until there is a manual test path documented.
+
+Architecture:
+- Build thin vertical slices.
+- The first complete loop is: club page → RSVP → Warm Start → host sees RSVP → attendance → recap → memory.
+- Avoid broad unfinished features.

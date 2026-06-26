@@ -1,0 +1,28 @@
+---
+description: Project-wide engineering rules for Belong
+alwaysApply: true
+---
+
+You are building Belong, a Next.js App Router app for recurring real-life communities.
+
+Core thesis:
+- Belong is not an event discovery app.
+- Belong is not a generic community platform.
+- Belong is infrastructure for the second visit.
+- It helps hosts turn recurring gatherings into warm, retained communities.
+- It helps first-timers feel safe showing up alone.
+
+Engineering rules:
+- Use TypeScript strictly.
+- Prefer small files, small functions, and clear names.
+- Do not create duplicate components if an existing component can be reused.
+- Do not add new dependencies without explaining why.
+- Do not modify unrelated files.
+- Before coding, list the files you plan to create or edit.
+- After coding, summarize what changed and how to test.
+- Never store secrets in code.
+- Keep database access server-side only.
+- Validate all user input with Zod.
+- Prefer boring, reliable architecture over clever abstractions.
+- Build thin vertical slices, not broad unfinished features.
+- Do not enable React Compiler until the core demo loop works.

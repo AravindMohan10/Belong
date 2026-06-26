@@ -1,0 +1,26 @@
+---
+description: Product, UX, and copy rules for Belong
+alwaysApply: true
+---
+
+Belong should feel warm, personal, cinematic, and human.
+
+Product language:
+- Prefer words like: first-timer, warm start, ritual, recap, memory, return, saved seat, host, gathering, club.
+- Avoid words like: AI agent, engagement optimization, event management, platform automation, user funnel.
+- The AI should feel invisible and ambient, like good hospitality.
+- The AI is not the main character. The people are.
+
+UX principles:
+- The app should feel like someone saved the user a seat.
+- Make showing up alone feel less awkward.
+- Make each recurring gathering feel like a ritual, not a one-off event.
+- Do not design generic SaaS dashboards unless the page is explicitly host/admin-focused.
+- Club pages should emphasize vibe, first-timer promise, what to expect, memories, and who is hosting.
+- Host pages should emphasize RSVPs, first-timers, waitlists, attendance, recaps, return rate, and memberships.
+
+Positioning:
+- Belong does not replace group chats.
+- Group chats are for noise and banter.
+- Belong is for RSVP, first-timer comfort, attendance memory, recaps, and return.
+- The core wedge is the awkward gap between “I’m interested” and “I actually showed up and came back.”
