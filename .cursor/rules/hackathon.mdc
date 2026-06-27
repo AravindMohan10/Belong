@@ -1,0 +1,49 @@
+---
+description: AWS + Vercel hackathon judging criteria and stack requirements for Belong
+alwaysApply: true
+---
+
+# Hackathon: ship real software on Aurora + Vercel
+
+Belong targets **Track 1 (Monetizable B2C)** or **Track 4 (Open Innovation)**. Hospitality / recurring gatherings fit B2C.
+
+## Required stack (non-negotiable for submission)
+
+- **Frontend**: deployed on Vercel
+- **Database**: Amazon Aurora PostgreSQL (via Drizzle + `DATABASE_URL`)
+- Document which AWS database in submission text, demo video, and architecture diagram
+- Capture screenshot: AWS Console or Vercel storage config proving Aurora usage
+
+## Judging criteria — optimize every slice for these
+
+1. **Technological implementation**: Real craftsmanship. Deliberate schema, indexed queries, server-side writes, Zod validation. AWS DB integrated on purpose — not mocked when persistence matters.
+2. **Design**: Frontend and backend feel like one product. Warm Belong aesthetic extends to auth, RSVP, host views.
+3. **Impact & real-world applicability**: Solves a real problem (first visit → second visit). Architecture should look shippable, not hacky.
+4. **Originality**: "Infrastructure for the second visit" — not another event listing app.
+
+## Auth strategy for hackathon
+
+- **UX**: Demo persona login (guest / host, name only). No passwords in the demo flow.
+- **Data**: Production-grade — users and sessions in Aurora, httpOnly cookies, server layout guards on `/host/*`.
+- **Avoid**: Pure in-memory auth, OAuth rabbit holes, fake stats, features without a DB touchpoint when the slice owns data.
+
+## Production deploy
+
+- Local dev: **Docker Postgres** (`docs/database-setup.md`).
+- Production: **Aurora + Vercel** (`docs/deploy-production.md`) — same Drizzle schema/migrations, swap `DATABASE_URL`.
+- Submission requires Aurora screenshot + Vercel env showing `DATABASE_URL`.
+
+## Slice order (current plan)
+
+1. Landing + clubs + Belonging Notes ✅
+2. **Roles & routing** — Aurora users/sessions, demo login, `/host/*` guard ✅
+3. RSVP + Warm Start — persisted RSVPs in Aurora
+4. Mock membership/billing
+5. Host dashboard + attendance
+6. Recap / memory
+
+## Before calling a slice done
+
+- `npm run typecheck`, `npm run lint`, `npm run build`
+- Manual test path in `docs/slice-N-test.md`
+- At least one server write/read hits Aurora for that slice's core data

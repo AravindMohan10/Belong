@@ -1,0 +1,5 @@
+export const SESSION_COOKIE = "belong_session";
+export const SESSION_TTL_DAYS = 14;
+
+export const DEMO_ALEX_ID = "00000000-0000-4000-8000-000000000001";
+export const DEMO_MARA_ID = "00000000-0000-4000-8000-000000000002";
