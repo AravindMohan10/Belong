@@ -7,7 +7,7 @@ import { partitionClubsByCity } from "@/lib/location/sort-clubs";
 import { getSession } from "@/lib/auth/session";
 
 export const metadata = {
-  title: "Discover · Belong",
+  title: "Discover",
   description:
     "Browse recurring gatherings near you: film walks, supper clubs, board nights, and more.",
 };
