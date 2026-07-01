@@ -2,7 +2,7 @@
 
 **Infrastructure for the second visit.** Belong is a full-stack web app for recurring real-life clubs: save a seat, get a Warm Start before you arrive, post memories after you attend, and join as a monthly member when you want to keep coming back.
 
-[GitHub](https://github.com/AravindMohan10/Belong) · Live demo URL in repo after deploy
+[Live demo](https://belong-black.vercel.app) · [GitHub](https://github.com/AravindMohan10/Belong)
 
 ## What it does
 

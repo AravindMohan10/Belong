@@ -19,8 +19,8 @@ If your cluster shows **Internet access gateway: Enabled**, you **must** use IAM
 - [ ] Inbound **5432** allowed (if using VPC security group)
 - [ ] Migrations + seed applied to Aurora
 - [ ] Vercel env vars set → redeploy
-- [ ] `/enter` shows Alex / Mara personas
-- [ ] Sign in as Mara → host **Tonight** view loads
+- [ ] `/enter` → sign in as guest or host with your name
+- [ ] Host **Tonight** view loads for club owners
 
 ---
 
