@@ -20,6 +20,7 @@ function poolOptionsFromUrl(databaseUrl: string): PoolConfig {
     connectionString: databaseUrl,
     max: isProduction ? 1 : 10,
     idleTimeoutMillis: isProduction ? 5_000 : 30_000,
+    connectionTimeoutMillis: 15_000,
     ...(needsSsl ? { ssl: { rejectUnauthorized: false } } : {}),
   };
 }
@@ -51,9 +52,19 @@ async function poolOptionsFromIam(): Promise<PoolConfig> {
     database: config.database,
     max: isProduction ? 1 : 5,
     idleTimeoutMillis: isProduction ? 5_000 : 30_000,
+    connectionTimeoutMillis: 15_000,
     maxLifetimeSeconds: 600,
     ssl: { rejectUnauthorized: false },
   };
+}
+
+function isAuthError(error: unknown): boolean {
+  if (!(error instanceof Error)) {
+    return false;
+  }
+
+  const message = error.message.toLowerCase();
+  return message.includes("pam authentication failed") || message.includes("28p01");
 }
 
 async function createPool(): Promise<Pool> {
@@ -65,11 +76,13 @@ async function createPool(): Promise<Pool> {
     );
   }
 
-  if (config.mode === "url") {
-    return new Pool(poolOptionsFromUrl(config.url));
-  }
+  const nextPool =
+    config.mode === "url"
+      ? new Pool(poolOptionsFromUrl(config.url))
+      : new Pool(await poolOptionsFromIam());
 
-  return new Pool(await poolOptionsFromIam());
+  await nextPool.query("SELECT 1");
+  return nextPool;
 }
 
 function isIamPoolStale(): boolean {
@@ -77,15 +90,34 @@ function isIamPoolStale(): boolean {
   return config?.mode === "iam" && pool !== null && Date.now() >= poolExpiresAt;
 }
 
+async function resetPool(): Promise<void> {
+  if (pool) {
+    await pool.end();
+    pool = null;
+  }
+}
+
 export async function getDb() {
   if (!pool || isIamPoolStale()) {
-    if (pool) {
-      await pool.end();
-      pool = null;
-    }
-
+    await resetPool();
     pool = await createPool();
   }
 
   return drizzle(pool, { schema });
+}
+
+export async function withDbRetry<T>(
+  run: (db: Awaited<ReturnType<typeof getDb>>) => Promise<T>,
+): Promise<T> {
+  try {
+    return await run(await getDb());
+  } catch (error) {
+    if (!isAuthError(error)) {
+      throw error;
+    }
+
+    await resetPool();
+    pool = await createPool();
+    return run(await getDb());
+  }
 }
