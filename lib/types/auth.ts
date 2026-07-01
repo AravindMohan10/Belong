@@ -5,6 +5,9 @@ export type SessionUser = {
   role: UserRole;
   displayName: string;
   hostClubSlug: string | null;
+  city: string | null;
+  latitude: number | null;
+  longitude: number | null;
 };
 
 export type DemoPersona = {

@@ -13,7 +13,7 @@ docker compose up -d
 Default local URL:
 
 ```text
-DATABASE_URL=postgresql://belong:belong@localhost:5432/belong
+DATABASE_URL=postgresql://belong:belong@localhost:5433/belong
 ```
 
 Copy to `.env.local` in the project root (create the file; it is gitignored).

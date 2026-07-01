@@ -13,7 +13,7 @@ export default async function HostLayout({
   }
 
   if (session.role !== "host") {
-    redirect("/clubs/sunday-cinema-walks");
+    redirect("/");
   }
 
   return <div className="bg-night-soft text-cream">{children}</div>;

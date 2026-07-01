@@ -13,7 +13,7 @@ export function ClosingCtaSection() {
           alone for the first time.
         </p>
         <div className="mt-8 flex justify-center overflow-visible pt-1">
-          <Button href="#clubs">Check out the clubs</Button>
+          <Button href="/discover">Explore gatherings</Button>
         </div>
       </div>
     </section>

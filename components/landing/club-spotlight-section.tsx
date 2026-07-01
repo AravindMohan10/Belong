@@ -1,8 +1,8 @@
 import { ClubSpotlightCard } from "@/components/landing/club-spotlight-card";
-import type { Club } from "@/lib/types/club";
+import type { ClubSummary } from "@/lib/types/club";
 
 type ClubSpotlightSectionProps = {
-  clubs: Club[];
+  clubs: ClubSummary[];
 };
 
 const rotations = ["-rotate-1", "rotate-1", "rotate-[0.5deg]", "-rotate-[0.5deg]"];

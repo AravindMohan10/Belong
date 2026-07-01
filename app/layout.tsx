@@ -23,10 +23,21 @@ const caveat = Caveat({
 });
 
 export const metadata: Metadata = {
-  title: "Belong",
+  title: {
+    default: "Belong",
+    template: "%s · Belong",
+  },
   description:
-    "Belong helps hosts of recurring gatherings welcome first-timers and make it easier for people to come back.",
+    "Infrastructure for the second visit. Belong helps recurring clubs welcome first-timers, save seats, and bring people back.",
+  openGraph: {
+    title: "Belong",
+    description:
+      "Recurring gatherings with saved seats, Warm Starts, and memberships that reward showing up again.",
+    type: "website",
+  },
 };
+
+export const dynamic = "force-dynamic";
 
 export default function RootLayout({
   children,

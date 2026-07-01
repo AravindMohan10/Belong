@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
-import type { Club } from "@/lib/types/club";
+import type { ClubSummary } from "@/lib/types/club";
 
 type ClubSpotlightCardProps = {
-  club: Club;
+  club: ClubSummary;
   rotateClass: string;
 };
 
@@ -32,6 +32,9 @@ export function ClubSpotlightCard({ club, rotateClass }: ClubSpotlightCardProps)
           </h3>
           <p className="mt-1.5 line-clamp-2 text-xs leading-snug text-ink-soft sm:text-sm">
             {club.tagline}
+          </p>
+          <p className="mt-1 text-xs text-ink-soft">
+            {club.neighborhood} · {club.city}
           </p>
           <p className="font-hand mt-2 text-base text-lamp group-hover:text-rust sm:text-lg">
             Open →

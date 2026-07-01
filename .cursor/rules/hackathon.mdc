@@ -37,8 +37,8 @@ Belong targets **Track 1 (Monetizable B2C)** or **Track 4 (Open Innovation)**. H
 
 1. Landing + clubs + Belonging Notes ✅
 2. **Roles & routing** — Aurora users/sessions, demo login, `/host/*` guard ✅
-3. RSVP + Warm Start — persisted RSVPs in Aurora
-4. Mock membership/billing
+3. RSVP + Warm Start — persisted RSVPs in Aurora ✅
+4. **Mock membership/billing** — monthly join after attendance, mock checkout ✅
 5. Host dashboard + attendance
 6. Recap / memory
 

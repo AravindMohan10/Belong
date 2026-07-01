@@ -26,6 +26,9 @@ export function ClubHero({ club }: ClubHeroProps) {
             {club.name}
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-white/90">{club.tagline}</p>
+          <p className="mt-3 text-sm text-white/75">
+            {club.neighborhood} · {club.city}
+          </p>
           <div className="mt-6 flex flex-wrap gap-2">
             {club.vibe.map((label) => (
               <span

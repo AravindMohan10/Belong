@@ -1,7 +1,3 @@
-import { loadAuroraEnv } from "@/lib/env/load-aurora-env";
-
 export async function register() {
-  if (!process.env.DATABASE_URL) {
-    loadAuroraEnv();
-  }
+  // Aurora env loads from next.config.ts so webpack does not bundle fs/dotenv here.
 }

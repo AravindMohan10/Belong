@@ -4,7 +4,9 @@ import type { Club } from "@/lib/types/club";
 import { formatSessionDate } from "@/lib/format";
 
 type FeaturedClubCardProps = {
-  club: Club;
+  club: Pick<Club, "slug" | "name" | "tagline" | "coverImageUrl" | "ritualLabel"> & {
+    upcomingSession?: Club["upcomingSession"];
+  };
 };
 
 export function FeaturedClubCard({ club }: FeaturedClubCardProps) {
@@ -32,7 +34,9 @@ export function FeaturedClubCard({ club }: FeaturedClubCardProps) {
         </div>
         <div className="border-t border-paper/10 bg-paper/5 px-5 py-4">
           <p className="text-sm text-cream/58">
-            {formatSessionDate(upcomingSession.startsAt)} · {upcomingSession.title}
+            {upcomingSession
+              ? `${formatSessionDate(upcomingSession.startsAt)} · ${upcomingSession.title}`
+              : club.tagline}
           </p>
           <p className="font-hand mt-1 text-lg text-lamp group-hover:text-lamp-soft">
             Open club page →

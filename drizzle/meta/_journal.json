@@ -8,6 +8,48 @@
       "when": 1782516598377,
       "tag": "0000_rare_black_bolt",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1782594162226,
+      "tag": "0001_daily_abomination",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1782631062251,
+      "tag": "0002_young_salo",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1782635000000,
+      "tag": "0003_club_voice",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1782640000000,
+      "tag": "0004_club_memory_reviews",
+      "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1782645000000,
+      "tag": "0005_club_memory_attribution",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1782650000000,
+      "tag": "0006_club_memberships",
+      "breakpoints": true
     }
   ]
 }

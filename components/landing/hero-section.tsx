@@ -20,7 +20,7 @@ export function HeroSection() {
             something people return to. First-timers, hosts, and regulars.
           </p>
           <div className="mt-8 flex flex-wrap items-end gap-x-6 gap-y-3 overflow-visible pt-1">
-            <Button href="#clubs">Check out the clubs</Button>
+            <Button href="/discover">Explore gatherings</Button>
             <Button href="#how-it-works" variant="secondary">
               How it works
             </Button>

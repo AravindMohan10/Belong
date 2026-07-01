@@ -1,36 +1,79 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Belong
 
-## Getting Started
+**Infrastructure for the second visit.** Belong is a full-stack web app for recurring real-life clubs: save a seat, get a Warm Start before you arrive, post memories after you attend, and join as a monthly member when you want to keep coming back.
 
-First, run the development server:
+[GitHub](https://github.com/AravindMohan10/Belong) · Live demo URL in repo after deploy
+
+## What it does
+
+| Role | Flow |
+|------|------|
+| **Guest** | Discover clubs → save a seat → Warm Start → attend → share photos & reviews → join as a member |
+| **Host** | Create a club → see Tonight's roster → track first-timers and monthly members |
+
+Belong is not event discovery. It is the layer between "I'm interested" and "I showed up and came back."
+
+## Stack
+
+- **Frontend:** Next.js 16 (App Router), React 19, Tailwind CSS 4
+- **Backend:** Server Actions, Zod validation, httpOnly session cookies
+- **Database:** PostgreSQL via Drizzle ORM (Docker locally, Aurora in production)
+- **Deploy:** Vercel
+
+## Features (end-to-end)
+
+- Location-aware discover (city presets, distance sorting)
+- Guest auth (name + city) and host auth with route guards
+- RSVP / save-a-seat flow with post-RSVP Warm Start
+- Club pages with first-timer promise, schedule, host, and guest memories
+- Verified memory uploads (attendance-gated)
+- Monthly memberships with checkout and cancellation
+- Host Tonight dashboard (RSVPs, first-timers, members)
+
+## Local development
 
 ```bash
+docker compose up -d
+cp env.example .env.local
+npm install
+npm run db:migrate
+npm run db:seed
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Default local database: `postgresql://belong:belong@localhost:5433/belong`
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Production
 
-## Learn More
+Aurora PostgreSQL + Vercel. See [docs/deploy-production.md](docs/deploy-production.md).
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+npm run db:migrate:iam   # Aurora with IAM auth
+npm run db:seed:iam
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Quality checks
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```bash
+npm run typecheck
+npm run lint
+npm run test
+npm run build
+```
 
-## Deploy on Vercel
+Manual QA: [docs/slice-2-test.md](docs/slice-2-test.md), [docs/slice-4-test.md](docs/slice-4-test.md).
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Architecture
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+Browser → Vercel (Next.js) → Aurora PostgreSQL
+                ↓
+         Server Actions + Drizzle
+         httpOnly session cookies
+```
+
+## Author
+
+Built by [Aravind Mohan](https://github.com/AravindMohan10).

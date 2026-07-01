@@ -1,4 +1,4 @@
-import { index, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
+import { index, pgTable, real, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 export const users = pgTable(
   "users",
@@ -6,7 +6,12 @@ export const users = pgTable(
     id: uuid("id").primaryKey().defaultRandom(),
     role: text("role").notNull().$type<"guest" | "host">(),
     displayName: text("display_name").notNull(),
+    bio: text("bio"),
+    imageUrl: text("image_url"),
     hostClubSlug: text("host_club_slug"),
+    city: text("city"),
+    latitude: real("latitude"),
+    longitude: real("longitude"),
     createdAt: timestamp("created_at", { withTimezone: true })
       .defaultNow()
       .notNull(),

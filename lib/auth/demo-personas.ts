@@ -12,7 +12,7 @@ export const demoPersonas: DemoPersona[] = [
   {
     id: DEMO_MARA_ID,
     role: "host",
-    displayName: "Mara",
+    displayName: "Mara Okonkwo",
     hostClubSlug: "sunday-cinema-walks",
     tagline: "Hosts Sunday Cinema Walks. Cares who comes back.",
   },

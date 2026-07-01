@@ -34,6 +34,9 @@ export async function getSession(): Promise<SessionUser | null> {
       role: users.role,
       displayName: users.displayName,
       hostClubSlug: users.hostClubSlug,
+      city: users.city,
+      latitude: users.latitude,
+      longitude: users.longitude,
     })
     .from(sessions)
     .innerJoin(users, eq(sessions.userId, users.id))
@@ -49,6 +52,9 @@ export async function getSession(): Promise<SessionUser | null> {
     role: row.role,
     displayName: row.displayName,
     hostClubSlug: row.hostClubSlug,
+    city: row.city,
+    latitude: row.latitude,
+    longitude: row.longitude,
   };
 }
 
